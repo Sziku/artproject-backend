@@ -12,4 +12,20 @@ import java.util.List;
 public class UserJdbcRepository implements UserRepository{
 
 
+    @Override
+    public AppUser findByUsername(String username) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public void save(AppUser appUser) throws UserAlreadyExistsException {
+//TODO
+    }
+
+    @Override
+    public List<AppUser> getAppUsers() {
+        //TODO
+        return null;
+    }
 }

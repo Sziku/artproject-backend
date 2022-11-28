@@ -20,28 +20,29 @@ public class ImageService {
     public List<ImageDataDTO> getAll(String user){
         //get owned by user.
         //help: imgurl = System.getenv("url") + "/api/artwork/" + id + "." +image.getExtension();
-
+//TODO
     }
 
     public boolean checkOwner(String owner, String id){
-
+//TODO
 
     }
 
     public void delete(String id, String owner) {
-
+//TODO
 
     }
 
     public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) {
-
+//TODO
     }
 
     public byte[] getImageFile(String filename) { //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
-
+//TODO
     }
 
     public String storeFile(MultipartFile file, String title, String description, String owner) {
         //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
+        //TODO
     }
 }
