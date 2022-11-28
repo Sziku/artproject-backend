@@ -1,0 +1,1 @@
+tokenkey=mysecret;host=localhost;port=5432;dbname=newimagedb;dbusername=myuser;dbpassword=mypass;defaultemail=defaultUser@coolmail.com;defaultpassword=defaultPass;url=localhost:8080
