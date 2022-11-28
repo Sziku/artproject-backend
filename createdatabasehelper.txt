@@ -1,0 +1,7 @@
+create database newimagedb;
+create user myuser with password mypass;
+GRANT ALL PRIVILEGES ON DATABASE newimagedb to myuser;
+GRANT ALL PRIVILEGES ON SCHEMA public TO myuser; -- ezt a newimagedb-n kell postgres accal kaidni
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+create table app_user(email varchar(50) primary key not null, password varchar(60) not null);
+create table image(id uuid primary key not null default uuid_generate_v4 (), title varchar(50) not null, owner varchar(50) not null, description varchar(250), content bytea not null, extension varchar(4) not null, constraint fk_image_app_user foreign key (owner) references app_user(email), unique(title));
