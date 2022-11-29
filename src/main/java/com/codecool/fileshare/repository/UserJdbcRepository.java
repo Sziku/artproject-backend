@@ -37,7 +37,27 @@ public class UserJdbcRepository implements UserRepository{
 
     @Override //Sziku
     public List<AppUser> getAppUsers() {
-        //TODO
+        final String SQL = "select email, password from app_user;";
+
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL);
+
+            ResultSet rs = st.executeQuery();
+            List<AppUser> appUserList = new ArrayList<>();
+            while (rs.next()){
+                appUserList.add(
+                        new AppUser(
+                                rs.getString(1),
+                                rs.getString(2)
+                        )
+                );
+            }
+            return appUserList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }
