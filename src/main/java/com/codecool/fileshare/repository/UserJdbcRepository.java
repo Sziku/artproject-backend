@@ -11,7 +11,19 @@ import java.util.List;
 @Repository
 public class UserJdbcRepository implements UserRepository{
 
+    static final String DB_TYPE = "jdbc:postgresql";
 
+    static final String ADDRESS = System.getenv("host");
+
+    static final int PORT = Integer.parseInt(System.getenv("port"));
+
+    static final String DB_NAME = System.getenv("dbname");
+
+    static final String DB_URL = DB_TYPE + "://" + ADDRESS + ":" + PORT + "/" + DB_NAME;
+
+    static final String USER = System.getenv("dbusername");
+
+    static final String PASS = System.getenv("dbpassword");
     @Override //Roland
     public AppUser findByUsername(String username) {
         //TODO
