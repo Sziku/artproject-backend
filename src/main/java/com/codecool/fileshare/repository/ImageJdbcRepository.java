@@ -37,7 +37,28 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override //Sziku
     public List<Image> getAll(String owner) {
-        //TODO
+        final String SQL = "select id, title, owner, description, content, extension from image where owner = ?;";
+
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setString(1, owner);
+
+            ResultSet rs = st.executeQuery();
+            List<Image> imageList = new ArrayList<>();
+            while (rs.next()){
+                imageList.add(new Image(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getBytes(5),
+                        rs.getString(6)));
+            }
+
+            return imageList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
