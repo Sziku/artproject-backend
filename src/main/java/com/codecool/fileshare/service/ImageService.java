@@ -17,31 +17,32 @@ public class ImageService {
     @Qualifier("jdbc")
     private ImageRepository imageRepository;
 
-    public List<ImageDataDTO> getAll(String user){
+    public List<ImageDataDTO> getAll(String user){ //Sziku
         //get owned by user.
         //help: imgurl = System.getenv("url") + "/api/artwork/" + id + "." +image.getExtension();
 //TODO
     }
 
-    public boolean checkOwner(String owner, String id){
+    public boolean checkOwner(String owner, String id){ //Adrian
 //TODO
 
     }
 
-    public void delete(String id, String owner) {
+    public void delete(String id, String owner) { //Adrian
 //TODO
 
     }
 
-    public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) {
+    public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) { //Balazs
 //TODO
     }
 
-    public byte[] getImageFile(String filename) { //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
+    public byte[] getImageFile(String filename) {//Balazs //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
 //TODO
+        // split("\\.")
     }
 
-    public String storeFile(MultipartFile file, String title, String description, String owner) {
+    public String storeFile(MultipartFile file, String title, String description, String owner) { //Sziku
         //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
         //TODO
     }

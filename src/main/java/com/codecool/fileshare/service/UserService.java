@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(appUser);
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserDTO> getAll(){ //Roland
 //TODO
     }
 

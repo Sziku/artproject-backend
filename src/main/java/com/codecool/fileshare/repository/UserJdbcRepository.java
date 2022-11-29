@@ -12,18 +12,18 @@ import java.util.List;
 public class UserJdbcRepository implements UserRepository{
 
 
-    @Override
+    @Override //Roland
     public AppUser findByUsername(String username) {
         //TODO
         return null;
     }
 
-    @Override
+    @Override //Roland
     public void save(AppUser appUser) throws UserAlreadyExistsException {
 //TODO
     }
 
-    @Override
+    @Override //Sziku
     public List<AppUser> getAppUsers() {
         //TODO
         return null;
