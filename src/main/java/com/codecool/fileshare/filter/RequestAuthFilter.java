@@ -56,6 +56,7 @@ public class RequestAuthFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
             }catch (Exception exception){
                 log.error("Auth error during  {} request to {}: {}", request.getMethod(), request.getRequestURL(), exception.getMessage());
+                exception.printStackTrace(); //TODO
                 response.sendError(FORBIDDEN.value());
             }
         }
