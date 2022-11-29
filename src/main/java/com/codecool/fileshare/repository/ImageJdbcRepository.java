@@ -76,7 +76,20 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override //Sziku
     public byte[] getImageFile(String id) {
-        //TODO
+        final String SQL = "select content from image where id = cast(? as uuid) ;";
+
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setString(1, id);
+
+            ResultSet rs = st.executeQuery();
+            rs.next();
+
+            return rs.getBytes(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return new byte[0];
     }
 }
