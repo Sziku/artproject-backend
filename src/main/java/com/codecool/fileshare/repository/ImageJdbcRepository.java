@@ -21,7 +21,7 @@ public class ImageJdbcRepository implements ImageRepository{
         return false;
     }
 
-    @Override
+    @Override //Sziku
     public List<Image> getAll(String owner) {
         //TODO
         return null;
@@ -39,7 +39,7 @@ public class ImageJdbcRepository implements ImageRepository{
 
     }
 
-    @Override
+    @Override //Sziku
     public byte[] getImageFile(String id) {
         //TODO
         return new byte[0];
