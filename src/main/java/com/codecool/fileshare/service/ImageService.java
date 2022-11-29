@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,12 @@ public class ImageService {
 
     public String storeFile(MultipartFile file, String title, String description, String owner) { //Sziku
         //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
-        //TODO
+        String[] fileNameSplit = file.getOriginalFilename().split("\\.");
+        try {
+            return imageRepository.storeImageFile(title,description,owner,file.getBytes(),fileNameSplit[1]);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
