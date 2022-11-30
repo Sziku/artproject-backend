@@ -21,13 +21,13 @@ public class ImageJdbcRepository implements ImageRepository{
     static final String USER = System.getenv("dbusername");
 
     static final String PASS = System.getenv("dbpassword");
-    @Override  //Balazs
+    @Override
     public String storeImageFile(String title, String description, String owner, byte[] content, String extension) {
-        //TODO
+        //TODO Balazs
         return null;
     }
 
-    @Override // Adrian
+    @Override
     public boolean checkOwner(String owner, String id) {
         //  where id = cast(? as uuid)
         final String sql = "SELECT owner FROM image WHERE id = CAST(? as uuid);";
@@ -46,7 +46,7 @@ public class ImageJdbcRepository implements ImageRepository{
         return false;
     }
 
-    @Override //Sziku
+    @Override
     public List<Image> getAll(String owner) {
         final String SQL = "select id, title, owner, description, content, extension from image where owner = ?;";
 
@@ -73,7 +73,7 @@ public class ImageJdbcRepository implements ImageRepository{
         return null;
     }
 
-    @Override // Adrian
+    @Override
     public void delete(String uuid, String owner) {
         final String sql = "DELETE FROM image WHERE id = CAST(? as uuid) AND owner = ?;";
 
@@ -89,13 +89,13 @@ public class ImageJdbcRepository implements ImageRepository{
         }
     }
 
-    @Override //Balazs
+    @Override
     public void updateImage(String id, String title, String description, String owner) {
-        //TODO
+        //TODO Balazs
 
     }
 
-    @Override //Sziku
+    @Override
     public byte[] getImageFile(String id) {
         final String SQL = "select content from image where id = cast(? as uuid) ;";
 

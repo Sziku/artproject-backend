@@ -24,18 +24,18 @@ public class UserJdbcRepository implements UserRepository{
     static final String USER = System.getenv("dbusername");
 
     static final String PASS = System.getenv("dbpassword");
-    @Override //Roland
+    @Override
     public AppUser findByUsername(String username) {
-        //TODO
+        //TODO Roland
         return null;
     }
 
-    @Override //Roland
+    @Override
     public void save(AppUser appUser) throws UserAlreadyExistsException {
-//TODO
+        //TODO Roland
     }
 
-    @Override //Sziku
+    @Override
     public List<AppUser> getAppUsers() {
         final String SQL = "select email, password from app_user;";
 
