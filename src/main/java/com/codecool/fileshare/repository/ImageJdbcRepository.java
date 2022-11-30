@@ -29,9 +29,20 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override // Adrian
     public boolean checkOwner(String owner, String id) {
-        //TODO
-
         //  where id = cast(? as uuid)
+        final String sql = "SELECT owner FROM image WHERE id = CAST(? as uuid);";
+
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,id);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return resultSet.getString(1).equals(owner);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
         return false;
     }
 
@@ -64,8 +75,18 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override // Adrian
     public void delete(String uuid, String owner) {
-        //TODO
+        final String sql = "DELETE FROM image WHERE id = CAST(? as uuid) AND owner = ?;";
 
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,uuid);
+            statement.setString(2,owner);
+
+            statement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override //Balazs

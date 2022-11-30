@@ -38,13 +38,11 @@ public class ImageService {
     }
 
     public boolean checkOwner(String owner, String id){ //Adrian
-//TODO
-
+        return imageRepository.checkOwner(owner, id);
     }
 
     public void delete(String id, String owner) { //Adrian
-//TODO
-
+        imageRepository.delete(id, owner);
     }
 
     public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) { //Balazs
