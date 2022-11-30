@@ -23,7 +23,18 @@ public class ImageService {
     public List<ImageDataDTO> getAll(String user){ //Sziku
         //get owned by user.
         //help: imgurl = System.getenv("url") + "/api/artwork/" + id + "." +image.getExtension();
+        List<ImageDataDTO> results = new ArrayList<>();
+        List<Image> images = imageRepository.getAll(user);
+        for (Image image : images) {
+            ImageDataDTO imageDataDTO = new ImageDataDTO();
+            imageDataDTO.setId(image.getId());
+            imageDataDTO.setTitle(image.getTitle());
+            imageDataDTO.setDescription(image.getDescription());
+            imageDataDTO.setUrl(System.getenv("url") + "/api/artwork/" + image.getId() + "." + image.getExtension());
 
+            results.add(imageDataDTO);
+        }
+        return results;
 
     }
 
@@ -46,6 +57,12 @@ public class ImageService {
 
     public String storeFile(MultipartFile file, String title, String description, String owner) { //Sziku
         //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
-
+        String[] fileNameSplit = file.getOriginalFilename().split("\\.");
+        try {
+            return imageRepository.storeImageFile(title,description,owner,file.getBytes(),fileNameSplit[1]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
