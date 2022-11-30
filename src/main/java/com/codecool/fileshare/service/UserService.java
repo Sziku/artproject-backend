@@ -37,7 +37,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserDTO> getAll(){ //Roland
-//TODO
+
     }
 
     @Override
