@@ -21,9 +21,6 @@ public class ImageService {
     private ImageRepository imageRepository;
 
     public List<ImageDataDTO> getAll(String user){
-        //get owned by user.
-        //help: imgurl = System.getenv("url") + "/api/artwork/" + id + "." +image.getExtension();
-        //TODO
         List<ImageDataDTO> imageDataDTOList = new ArrayList<>();
         for(Image image : imageRepository.getAll(user)){
             String imgurl = System.getenv("url") + "/api/artwork/" + image.getId() + "." +image.getExtension();
