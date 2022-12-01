@@ -26,7 +26,6 @@ public class UserJdbcRepository implements UserRepository{
 
     @Override
     public AppUser findByUsername(String username) {
-        //TODO
         final String SQL = "select email, password from app_user where email = ?;";
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
             PreparedStatement st = con.prepareStatement(SQL);
@@ -45,7 +44,6 @@ public class UserJdbcRepository implements UserRepository{
 
     @Override
     public void save(AppUser appUser) throws UserAlreadyExistsException {
-        //TODO
         final String SQL = "insert into app_user(email, password) values(?,?);";
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
             PreparedStatement st = con.prepareStatement(SQL);
@@ -62,7 +60,6 @@ public class UserJdbcRepository implements UserRepository{
 
     @Override
     public List<AppUser> getAppUsers() {
-        //TODO
         final String SQL = "select email, password from app_user;";
 
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){

@@ -36,29 +36,23 @@ public class ImageService {
     }
 
     public boolean checkOwner(String owner, String id){
-//TODO
         return imageRepository.checkOwner(owner,id);
     }
 
     public void delete(String id, String owner) {
-//TODO
         imageRepository.delete(id,owner);
     }
 
     public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) {
-//TODO
         imageRepository.updateImage(id,imageUpdateDTO.getTitle(),imageUpdateDTO.getDescription(),owner);
     }
 
     public byte[] getImageFile(String filename) { //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
-//TODO
         String[] fileNameSplit = filename.split("\\.");
         return imageRepository.getImageFile(fileNameSplit[0]);
     }
 
     public String storeFile(MultipartFile file, String title, String description, String owner) {
-        //help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg
-        //TODO
         String[] fileNameSplit = file.getOriginalFilename().split("\\.");
         try {
             return imageRepository.storeImageFile(title,description,owner,file.getBytes(),fileNameSplit[1]);

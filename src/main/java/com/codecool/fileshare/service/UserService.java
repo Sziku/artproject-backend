@@ -37,7 +37,6 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserDTO> getAll(){
-        //TODO
         List<UserDTO> userDTOList =  new ArrayList<>();
         for(AppUser appUser : userRepository.getAppUsers()){
             userDTOList.add(new UserDTO(

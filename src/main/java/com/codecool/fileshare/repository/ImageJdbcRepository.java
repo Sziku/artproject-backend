@@ -25,7 +25,6 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public String storeImageFile(String title, String description, String owner, byte[] content, String extension) {
-        //TODO
         final String SQL = "insert into image(title, owner, description, content, extension) values(?,?,?,?,?);";
         String id  = null;
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -51,7 +50,6 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public boolean checkOwner(String owner, String id) {
-        //TODO
         final String SQL = "select owner from image where id = cast(? as uuid);";
 
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -70,7 +68,6 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public List<Image> getAll(String owner) {
-        //TODO
         final String SQL = "select id, title, owner, description, content, extension from image where owner = ?;";
 
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -98,7 +95,6 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public void delete(String uuid, String owner) {
-        //TODO
         final String SQL = "delete from image where id = cast(? as uuid) and owner = ?;";
 
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -116,7 +112,6 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public void updateImage(String id, String title, String description, String owner) {
-        //TODO
         final String SQL = "update image set title = ?, owner = ?, description = ? where id = cast(? as uuid) ;";
 
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -135,7 +130,6 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public byte[] getImageFile(String id) {
-        //TODO
         final String SQL = "select content from image where id = cast(? as uuid) ;";
 
         try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
