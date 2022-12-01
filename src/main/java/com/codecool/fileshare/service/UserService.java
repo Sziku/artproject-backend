@@ -37,9 +37,14 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserDTO> getAll(){
-        //TODO  Roland
+        List<UserDTO> userDTOList =  new ArrayList<>();
+        for(AppUser appUser : userRepository.getAppUsers()){
+            userDTOList.add(new UserDTO(
+                    appUser.getEmail()
+            ));
+        }
 
-        return null;
+        return userDTOList;
     }
 
     @Override

@@ -26,13 +26,36 @@ public class UserJdbcRepository implements UserRepository{
     static final String PASS = System.getenv("dbpassword");
     @Override
     public AppUser findByUsername(String username) {
-        //TODO Roland
+        final String SQL = "select email, password from app_user where email = ?;";
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setString(1, username);
+
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            return new AppUser(rs.getString(1),rs.getString(2));
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void save(AppUser appUser) throws UserAlreadyExistsException {
-        //TODO Roland
+        final String SQL = "insert into app_user(email, password) values(?,?);";
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setString(1, appUser.getEmail());
+            st.setString(2, appUser.getPassword());
+
+            st.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
