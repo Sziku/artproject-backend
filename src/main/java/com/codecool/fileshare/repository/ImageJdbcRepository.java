@@ -23,7 +23,6 @@ public class ImageJdbcRepository implements ImageRepository{
     static final String PASS = System.getenv("dbpassword");
     @Override
     public String storeImageFile(String title, String description, String owner, byte[] content, String extension) {
-        //TODO Balazs
         return null;
     }
 
@@ -91,7 +90,19 @@ public class ImageJdbcRepository implements ImageRepository{
 
     @Override
     public void updateImage(String id, String title, String description, String owner) {
-        //TODO Balazs
+        final String sql = "UPDATE image SET title = ?, description = ?, owner = ? WHERE id = CAST(? as uuid);";
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,title);
+            statement.setString(2,description);
+            statement.setString(3,owner);
+            statement.setString(4,id);
+
+            statement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 
