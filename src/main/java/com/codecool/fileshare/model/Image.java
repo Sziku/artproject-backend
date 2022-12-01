@@ -2,7 +2,6 @@ package com.codecool.fileshare.model;
 
 
 public class Image {
-    //TODO
     private String id;
     private String title;
     private String owner;

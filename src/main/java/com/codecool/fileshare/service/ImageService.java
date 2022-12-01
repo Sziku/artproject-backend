@@ -35,12 +35,12 @@ public class ImageService {
         return imageDataDTOList;
     }
 
-    public boolean checkOwner(String owner, String id){
-        return imageRepository.checkOwner(owner,id);
+    public boolean checkOwner(String owner, String id){ //Adrian
+        return imageRepository.checkOwner(owner, id);
     }
 
-    public void delete(String id, String owner) {
-        imageRepository.delete(id,owner);
+    public void delete(String id, String owner) { //Adrian
+        imageRepository.delete(id, owner);
     }
 
     public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) {

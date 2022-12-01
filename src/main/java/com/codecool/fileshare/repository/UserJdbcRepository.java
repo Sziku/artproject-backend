@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public class UserJdbcRepository implements UserRepository{
+
     static final String DB_TYPE = "jdbc:postgresql";
 
     static final String ADDRESS = System.getenv("host");
@@ -23,7 +24,6 @@ public class UserJdbcRepository implements UserRepository{
     static final String USER = System.getenv("dbusername");
 
     static final String PASS = System.getenv("dbpassword");
-
     @Override
     public AppUser findByUsername(String username) {
         final String SQL = "select email, password from app_user where email = ?;";
@@ -70,8 +70,8 @@ public class UserJdbcRepository implements UserRepository{
             while (rs.next()){
                 appUserList.add(
                         new AppUser(
-                              rs.getString(1),
-                              rs.getString(2)
+                                rs.getString(1),
+                                rs.getString(2)
                         )
                 );
             }
