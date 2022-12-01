@@ -45,12 +45,14 @@ public class ImageService {
 
     public void updateCategory(String id ,ImageUpdateDTO imageUpdateDTO, String owner) {
         //TODO Balazs
+        imageRepository.updateImage(id,imageUpdateDTO.getTitle(),imageUpdateDTO.getDescription(),owner);
     }
 
     public byte[] getImageFile(String filename) {
         //TODO Balazs help: filename is for example 41d6608d-0803-4239-9235-09f902fbf705.jpg split("\\.")
+        String[] fileNameSplit = filename.split("\\.");
+        return imageRepository.getImageFile(fileNameSplit[0]);
 
-        return null;
     }
 
     public String storeFile(MultipartFile file, String title, String description, String owner) {

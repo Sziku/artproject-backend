@@ -24,6 +24,26 @@ public class ImageJdbcRepository implements ImageRepository{
     @Override
     public String storeImageFile(String title, String description, String owner, byte[] content, String extension) {
         //TODO Balazs
+        final String SQL = "insert into image(title, owner, description, content, extension) values(?,?,?,?,?);";
+        String id  = null;
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, title);
+            st.setString(2, owner);
+            st.setString(3, description);
+            st.setBytes(4, content);
+            st.setString(5, extension);
+
+            st.executeUpdate();
+
+            ResultSet rs = st.getGeneratedKeys();
+            rs.next();
+            id  = rs.getString(1);
+            return id;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -92,7 +112,20 @@ public class ImageJdbcRepository implements ImageRepository{
     @Override
     public void updateImage(String id, String title, String description, String owner) {
         //TODO Balazs
+        final String SQL = "update image set title = ?, owner = ?, description = ? where id = cast(? as uuid) ;";
 
+        try(Connection con = DriverManager.getConnection(DB_URL, USER, PASS)){
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setString(1, title);
+            st.setString(2, owner);
+            st.setString(3, description);
+            st.setString(4, id);
+
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
