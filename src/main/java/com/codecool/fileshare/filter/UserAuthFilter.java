@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.google.gson.Gson;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 public class UserAuthFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;

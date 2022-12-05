@@ -57,6 +57,7 @@ public class UserJdbcRepository implements UserRepository{
 
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new UserAlreadyExistsException();
         }
     }
 

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -19,6 +20,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @Slf4j
+
 public class RequestAuthFilter extends OncePerRequestFilter {
     private static final String EXPECTED_AUTH_HEADER_PREFIX = "Bearer ";
     private static final String LOGIN_URL = "/api/login";
@@ -31,6 +33,7 @@ public class RequestAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         if(request.getServletPath().equals(LOGIN_URL) || request.getServletPath().equals(SIGNUP_URL)){
             filterChain.doFilter(request,response);
         } else {
